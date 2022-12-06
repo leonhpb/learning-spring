@@ -25,7 +25,7 @@ public class StudentService {
         System.out.println(student);
         Optional<Student> studentWithThisEmail = studentRepository.findByEmail(student.getEmail());
         if(studentWithThisEmail.isPresent()){
-            throw new IllegalStateException("email taken");
+            throw new IllegalStateException("Email taken");
         }
         studentRepository.save(student);
     }
@@ -37,7 +37,7 @@ public class StudentService {
         studentRepository.deleteById(studentId);
     }
 
-    @Transactional
+    /*@Transactional
     public void updateStudent(Student updatedStudent){
         Optional<Student> studentWithThisId = studentRepository.findById(updatedStudent.getId());
         if (!studentWithThisId.isPresent()){
@@ -47,5 +47,27 @@ public class StudentService {
         studentWithThisId.get().setEmail(updatedStudent.getEmail());
 
         studentRepository.save(studentWithThisId.get());
+    }*/
+
+    @Transactional
+    public void updateStudent(Long studentId, String name, String email) {
+        Student studentWithThisId = studentRepository.findById(studentId).orElseThrow(
+                () -> new IllegalStateException("Student with id " + studentId + " does not exist.")
+        );
+
+        if(name != null && name.length() > 0 && !name.equals(studentWithThisId.getName())){
+            studentWithThisId.setName(name);
+        }
+
+        if(email != null && email.length() > 0 && !email.equals(studentWithThisId.getEmail())){
+            Optional<Student> studentWithThisEmail = studentRepository.findByEmail(email);
+            if(studentWithThisEmail.isPresent()) {
+                throw new IllegalStateException("Email taken");
+            }
+
+            studentWithThisId.setEmail(email);
+        }
+
+        studentRepository.save(studentWithThisId);
     }
 }
