@@ -1,5 +1,6 @@
 package com.example.demo.student;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,12 @@ public class StudentService {
             throw new IllegalStateException("email taken");
         }
         studentRepository.save(student);
+    }
+
+    public void deleteStudent(Long studentId) {
+        if(!studentRepository.existsById(studentId)){
+            throw new IllegalStateException("Student with id " + studentId + " does not exist.");
+        }
+        studentRepository.deleteById(studentId);
     }
 }
