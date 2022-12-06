@@ -36,4 +36,16 @@ public class StudentService {
         }
         studentRepository.deleteById(studentId);
     }
+
+    @Transactional
+    public void updateStudent(Student updatedStudent){
+        Optional<Student> studentWithThisId = studentRepository.findById(updatedStudent.getId());
+        if (!studentWithThisId.isPresent()){
+            throw new IllegalStateException("Student with id " + updatedStudent.getId() + " does not exist.");
+        }
+        studentWithThisId.get().setName(updatedStudent.getName());
+        studentWithThisId.get().setEmail(updatedStudent.getEmail());
+
+        studentRepository.save(studentWithThisId.get());
+    }
 }
