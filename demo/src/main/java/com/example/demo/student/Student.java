@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Entity
-@Table
+@Entity // JPA stablishes a connection between this class and a table with same name in DB
+@Table  // Allows to change some table details in the DB such as name, and schema
 public class Student {
     @Id
     @SequenceGenerator(

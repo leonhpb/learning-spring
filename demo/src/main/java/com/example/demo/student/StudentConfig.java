@@ -9,10 +9,11 @@ import java.util.List;
 
 import static java.time.Month.JANUARY;
 
-@Configuration
+@Configuration // Indicates that this class defines Bean methods
 public class StudentConfig {
 
-    @Bean
+    @Bean // Indicates a Bean, which is an object instantiated and managed by Spring and can be used somewhere else
+    // like autowired to methods/attributes
     CommandLineRunner commandLineRunner(
             StudentRepository repository){
         return args -> {
