@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@RestController // Simplify the creation of RESTful web services, combines @Controller and @ResponseBody
+@RestController // Simplifies the creation of RESTful web services, combines @Controller and @ResponseBody
 @RequestMapping(path = "api/v1/student") // Used to map web requests to Spring Controller methods
 public class StudentController {
     private final StudentService studentService;

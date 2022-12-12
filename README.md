@@ -30,15 +30,16 @@ The project follows an N-tier architecture, divided in Controller, Service, Data
 ## On the Code
 Spring uses annotations and other components to add/automate special funcionalities to the java project. Here are some of them:
 
-* @SpringBootApplication - for main application class
-* SpringApplication.run(Application.class, args) - to start the Spring Boot Application
-* @RestController - Defines class as controller for a RESTful api, where you can add RESTful endpoints
-* @GetMapping, @PostMapping, @PutMapping, @DeleteMapping - m aps method or class to GET, POST, PUT or DELETE HTTP methods respectively
+* @SpringBootApplication - For the main application class
+* SpringApplication.run(Application.class, args) - To start the Spring Boot Application
+* @RestController - Simplifies the creation of RESTful web services, combines @Controller and @ResponseBody
+* @GetMapping, @PostMapping, @PutMapping, @DeleteMapping - Maps method or class to GET, POST, PUT or DELETE HTTP methods respectively
 * @RequestMapping - Same as above but generic, for all http requests
 * @Autowired - Automatically fills constructor arguments with instances of the objects needed (objects need to be Spring components)
 * @Component - for a Spring component class
 * @Service - A component which is explicitly a service
-* @Entity and @Table - To map a class to DB (entity for hybernate, table for the table)
+* @Entity - JPA stablishes a connection between this class and a table with same name in DB
+* @Table - To map a class to DB (entity for hybernate, table for the table)
 * Example annotations for an id attribute in an entity-table class, 
     - @Id
     - @SequenceGenerator(
@@ -52,8 +53,8 @@ Spring uses annotations and other components to add/automate special funcionalit
     )
   )
 * @Repository - for a repository class which is our interface to database
-* @Configuration - for configuration files, pre-loaded db values in example
-* @Bean - For beans. Beans are objects managed from Spring itself
+* @Configuration - class that defines beans. in the example there is a bean which pre-loads db values
+* @Bean - For beans. Beans are objects instantiated and managed from Spring itself
 * @Transient - For attributes that are not to be stored on DB
 * @Autowired - Connects automatically method parameters/class attributes to objects managed by Spring (annotated by @Component/@Service/@Controller/@Repository/@Bean)
 
